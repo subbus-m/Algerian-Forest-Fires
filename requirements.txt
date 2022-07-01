@@ -1,0 +1,11 @@
+flask
+gunicorn
+Jinja2
+scipy
+sklearn
+Werkzeug
+pandas
+scikit-learn
+matplotlib
+mysql-connector-python
+mysql
