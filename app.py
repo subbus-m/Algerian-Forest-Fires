@@ -48,7 +48,7 @@ def classp():    # Function to predict the values
 # we are making it as API by mentioning methods=['POST']. Even in class.html page, we mention method='post'
 # in action so that this predict_class API will be triggered when 'predict class' button is clicked in
 # class.html page.
-@app.route('/predict_class_html')
+@app.route('/predict_class_html', methods = ['POST'])
 def predict_class_html():    # Function to predict the values
 
     data = [float(x) for x in request.form.values()]    # request.form.values will retrieve values from the web form we created
