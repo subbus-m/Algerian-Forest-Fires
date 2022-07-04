@@ -48,7 +48,7 @@ def classp():    # Function to predict the values
 # we are making it as API by mentioning methods=['POST']. Even in class.html page, we mention method='post'
 # in action so that this predict_class API will be triggered when 'predict class' button is clicked in
 # class.html page.
-@app.route('/predict_class_html', methods = ['POST'])
+@app.route('/predict_class_html')
 def predict_class_html():    # Function to predict the values
 
     data = [float(x) for x in request.form.values()]    # request.form.values will retrieve values from the web form we created
@@ -78,7 +78,7 @@ def predict_temp_html():    # Function to predict the values
 # This API is to predict class in batch input from the mysql table algeriaff
 # When this API is called, it will read mysql table algeriaff and predicts class using model and provide
 # batch output for all the input from table.
-@app.route('/predict_class_mysql', methods = ['POST'])
+@app.route('/predict_class_mysql')
 def predict_class_mysql():
     mydb = conn.Connect(host='localhost', user='root', passwd='mysql')
     cursor = mydb.cursor()
@@ -86,7 +86,7 @@ def predict_class_mysql():
     cursor.execute('select day, month, year, temperature, rh, ws, rain, ffmc, dmc, dc, isi, bui, fwi from algeriaff')
     new_data = cursor.fetchall()
     output = class_model.predict(new_data)
-    return str(output)
+    return render_template('home.html', prediction_text='The predicted class is - {}'.format(output))
 
 if __name__ == '__main__':
     app.run(debug=True)
